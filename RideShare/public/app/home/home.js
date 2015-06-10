@@ -9,10 +9,13 @@ angular.module('rideshareApp.home', []).controller('homeCont', function($scope, 
         console.log('error here....',err);
     });
     $scope.addRoute = function (){
-        route.sourcelng = $scope.sourcelng;
+        //route["srcloc"] = [];
+        route.srcloc = {type: 'Point', coordinates: [Number($scope.sourcelng), Number($scope.sourcelt)]};
+        route.dstloc = {type: 'Point', coordinates: [Number($scope.destinationlng), Number($scope.destinationlt)]};
+        /*route.sourcelng = $scope.sourcelng;
         route.sourcelt = $scope.sourcelt;
         route.destinationlng = $scope.destinationlng;
-        route.destinationlt = $scope.destinationlt;
+        route.destinationlt = $scope.destinationlt;*/
         console.log(route);
         Routes.saveRoute(route).success(function(){
            console.log('Route added');

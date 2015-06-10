@@ -1,16 +1,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Routes = new Schema({
-    type: {
+/*var Routes = new Schema({
         sourcelng: Number,
         sourcelt: Number,
         destinationlng: Number,
-        destinationlt: Number
+        destinationlt: Number,
+});*/
+var Routes = new Schema({
+    srcloc: {
+        type: { type: String }
+        , coordinates: []
     },
-    loc: {type: [Number], index: '2dsphere' }
+    dstloc: {
+        type: { type: String }
+        , coordinates: []
+    }
 });
-
-Routes.index({type: 1, loc: 1});
+//Routes.index({ srcloc: '2dsphere' });
 
 module.exports = mongoose.model('Routes', Routes);

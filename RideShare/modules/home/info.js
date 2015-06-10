@@ -13,12 +13,12 @@ router.get('/getRoutes', function(req, res) {
 });
 router.get('/searchRoutes', function(req, res) {
     Routermodel.find({
-        loc:{
+        srcloc:{
             $near:{
                 $geometry:
                 {
                     type: 'Point',
-                    coordinates: [70,40]
+                    coordinates: [-70,40]
                 },
                 $maxDistance: 5000,
                 $minDistance: 1000
