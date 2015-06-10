@@ -4,8 +4,15 @@
         <li><a href="#/logout">Log Out</a></li>
     </ul>
     <form action="/info" method="post">
-        <input type="text" name="source" placeholder="source location"/>
-        <input type="text" name="destination" placeholder="destination location"/>
-        <input type="submit" value="Add"/>
+        <input type="text" name="sourcelng" ng-model="sourcelng" placeholder="source longitude"/>
+        <input type="text" name="sourcelt" ng-model="sourcelt" placeholder="source latitude"/>
+        <input type="text" name="destinationlng" ng-model="destinationlng" placeholder="destination longitude"/>
+        <input type="text" name="destinationlt" ng-model="destinationlt" placeholder="destination latitude"/>
+        <!--<input type="submit" value="Add"/>-->
     </form>
+    <button ng-click="addRoute()">Add Route</button>
+    <button ng-click="searchRoutes()">Search Routes</button>
+    <ul id="retrieve">
+        <li ng-repeat="route in routes">{{route.sourcelng}} , {{route.sourcelt}}</li>
+    </ul>
 </div>

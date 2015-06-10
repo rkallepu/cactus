@@ -9,10 +9,9 @@ angular.module('rideshareApp', ['ngRoute', 'rideshareApp.accounts','rideshareApp
         templateUrl: '/app/accounts/_logout.html'
     }).when('/info', {
         templateUrl: '/app/home/_info.html',
-        controller: 'homeCont'
+        controller:'homeCont'
     }).otherwise({
         redirectTo: '/'
-
     });
 }).run(function (){
 });
