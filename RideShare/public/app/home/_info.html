@@ -1,18 +1,34 @@
 <div>
-    <h1>Welcome {{name}}</h1>
-    <ul>
-        <li><a href="#/logout">Log Out</a></li>
-    </ul>
-    <form action="/info" method="post">
-        <input type="text" name="sourcelng" ng-model="sourcelng" placeholder="source longitude"/>
-        <input type="text" name="sourcelt" ng-model="sourcelt" placeholder="source latitude"/>
-        <input type="text" name="destinationlng" ng-model="destinationlng" placeholder="destination longitude"/>
-        <input type="text" name="destinationlt" ng-model="destinationlt" placeholder="destination latitude"/>
-        <!--<input type="submit" value="Add"/>-->
+    <h4>Welcome {{name}}</h4>
+    <form class="navbar-form">
+        <div class="form-group">
+            <input class="form-control" type="text" name="sourcelng" ng-model="sourcelng" placeholder="source longitude"/>
+            <input class="form-control" type="text" name="sourcelt" ng-model="sourcelt" placeholder="source latitude"/>
+            <input class="form-control" type="text" name="destinationlng" ng-model="destinationlng" placeholder="destination longitude"/>
+            <input class="form-control" type="text" name="destinationlt" ng-model="destinationlt" placeholder="destination latitude"/>
+        </div>
+        <button ng-click="addRoute()" class="btn btn-default navbar-btn">Add Route</button>
+        <button ng-click="seeAllRoutes()" class="btn btn-default navbar-btn">Show All Routes</button>
     </form>
-    <button ng-click="addRoute()">Add Route</button>
-    <button ng-click="searchRoutes()">Search Routes</button>
+
+    <h5>All Available Routes:</h5>
     <ul id="retrieve">
-        <li ng-repeat="route in routes">{{route.sourcelng}} , {{route.sourcelt}}</li>
+        <li ng-repeat="route in routes">{{route.srcloc.coordinates}} , {{route.dstloc.coordinates}}</li>
+    </ul>
+</div>
+
+<div>
+    <form class="navbar-form">
+        <div class="form-group">
+            <input class="form-control" type="text" name="searchSrcLon" ng-model="searchSrcLon" placeholder="source longitude"/>
+            <input class="form-control" type="text" name="searchSrcLat" ng-model="searchSrcLat" placeholder="source latitude"/>
+            <input class="form-control" type="text" name="searchDestLon" ng-model="searchDestLon" placeholder="destination longitude"/>
+            <input class="form-control" type="text" name="searchDestLat" ng-model="searchDestLat" placeholder="destination latitude"/>
+        </div>
+        <button ng-click="searchRoutes()" class="btn btn-default navbar-btn">Search Routes</button>
+    </form>
+    <h5>Search Routes:</h5>
+    <ul>
+        <li ng-repeat="route in searchedRoutes | filter:matchRoutes">{{route.srcloc.coordinates}} , {{route.dstloc.coordinates}}</li>
     </ul>
 </div>

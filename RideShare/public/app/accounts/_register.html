@@ -1,12 +1,11 @@
-<div>
-    <h1>Sign Up Page</h1>
-    <p>Welcome to Ride Share Registration</p>
-
-    <form name="user" action="/register" method="post">
-        <input type="text" name="username" placeholder="user name" ng-model="new_user.username"/>
-        <input type="email" name="email"  placeholder="email" ng-model="new_user.email"/>
-        <input type="password" name="password" placeholder="password" ng-model="new_user.password"/>
-        <!--<input ng-click="register()" type="submit" value="Submit"/>-->
+<div class="text-center">
+    <h4>New User Registration</h4>
+    <form class="navbar-form" name="user" action="/register" method="post">
+        <div class="form-group">
+            <div><input class="form-control rideshare-style" type="text" name="username" placeholder="user name" ng-model="new_user.username"/></div>
+            <div><input class="form-control rideshare-style" type="email" name="email"  placeholder="email" ng-model="new_user.email"/></div>
+            <div><input class="form-control rideshare-style" type="password" name="password" placeholder="password" ng-model="new_user.password"/></div>
+        </div>
     </form>
-    <button ng-click="register()">Submit</button>
+    <button ng-click="register()" class="btn btn-default navbar-btn">Register me..!!!</button>
 </div>

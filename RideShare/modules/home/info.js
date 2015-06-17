@@ -18,17 +18,16 @@ router.get('/searchRoutes', function(req, res) {
                 $geometry:
                 {
                     type: 'Point',
-                    coordinates: [-70,40]
+                    coordinates: [Number(req.query.lng), Number(req.query.lat)]
                 },
                 $maxDistance: 5000,
-                $minDistance: 1000
+                $minDistance: 0
             }
         }
     },function(err, results){
         if(err) res.status(500).json(err);
         else res.status(200).json(results);
     });
-    //res.send({msg:"Hello"});
 });
 router.post('/info', function (req, res){
     console.log(req.body);

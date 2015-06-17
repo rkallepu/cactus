@@ -1,8 +1,19 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.row{
+  padding-top: 70px;
+}
+a.rideshare-style{
+  margin: 20px;
+}
+input.rideshare-style{
+  margin: 5px;
+}
 a {
   color: #00B7FF;
+}
+h1.rideshare-style{
+  margin-left: 10px;
 }
