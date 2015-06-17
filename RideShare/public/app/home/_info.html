@@ -29,6 +29,6 @@
     </form>
     <h5>Search Routes:</h5>
     <ul>
-        <li ng-repeat="route in searchedRoutes | filter:matchRoutes">{{route.srcloc.coordinates}} , {{route.dstloc.coordinates}}</li>
+        <li ng-repeat="route in searchedRoutes | matchRoutes:searchDestLon:searchDestLat">{{route.srcloc.coordinates}} , {{route.dstloc.coordinates}}</li>
     </ul>
 </div>

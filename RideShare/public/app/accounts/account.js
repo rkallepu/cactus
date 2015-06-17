@@ -1,20 +1,20 @@
 angular.module('rideshareApp.accounts', []).controller('registerCont', function($scope, $location, Account){
-    console.log('Inside register controller');
+    //console.log('Inside register controller');
     $scope.update(true, false, true);
     $scope.new_user = { };
     $scope.register = function(){
         Account.register($scope.new_user).success(function (data){
-            console.log('Hi from register controller');
+            //console.log('Hi from register controller');
             $location.path('/login');
         });
     }
 }).controller('loginCont', function($scope, $location, Account){
     $scope.update(true, true, false);
     $scope.new_user = {};
-    console.log('Inside login controller');
+    //console.log('Inside login controller');
     $scope.login = function(){
         Account.login($scope.new_user).then(function(data){
-            console.log('Hi from login controller');
+            //console.log('Hi from login controller');
             $location.path('/info');
         });
     };

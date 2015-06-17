@@ -35,7 +35,7 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
             url: "/logout",
             views: {
                 "viewA": {
-                    templateUrl: '/app/home/_logout.html'
+                    templateUrl: '/app/accounts/_logout.html'
                 }
             }
         });

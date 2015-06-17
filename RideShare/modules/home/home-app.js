@@ -3,4 +3,3 @@ var express = require('express'),
 module.exports = function (app){
     app.use('/', require('./info'));
 };
-

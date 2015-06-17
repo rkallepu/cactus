@@ -30,7 +30,7 @@ router.get('/searchRoutes', function(req, res) {
     });
 });
 router.post('/info', function (req, res){
-    console.log(req.body);
+    //console.log(req.body);
     (new Routermodel(req.body)).save(function (err, result){
         if(err) res.status(500).json(err);
         else res.status(200).json({message: 'Added'});

@@ -1,7 +1,5 @@
-angular.module('rideshareApp.home', []).controller('homeCont', function($scope, $location,Routes,Account){
-    console.log('Inside home controller');
-    console.log($scope);
-    //console.log(Account.user.user.name);
+angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', function($scope, $location,Routes,Account){
+    //console.log('Inside home controller');
     if(Account.user === null){
         $location.path('/login');
     }else {
@@ -10,7 +8,7 @@ angular.module('rideshareApp.home', []).controller('homeCont', function($scope, 
         var route = {};
         $scope.seeAllRoutes = function () {
             Routes.retrieveRoutes().then(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.routes = data;
             }, function (err) {
                 console.log('error here....', err);
@@ -19,8 +17,9 @@ angular.module('rideshareApp.home', []).controller('homeCont', function($scope, 
         $scope.addRoute = function () {
             route.srcloc = {type: 'Point', coordinates: [Number($scope.sourcelng), Number($scope.sourcelt)]};
             route.dstloc = {type: 'Point', coordinates: [Number($scope.destinationlng), Number($scope.destinationlt)]};
-            console.log(route);
+            //console.log(route);
             Routes.saveRoute(route).success(function () {
+                $scope.sourcelng = '', $scope.sourcelt = '', $scope.destinationlng = '', $scope.destinationlt = '';
                 console.log('Route added');
                 //Routes.retrieveRoutes();
             });
@@ -29,8 +28,7 @@ angular.module('rideshareApp.home', []).controller('homeCont', function($scope, 
         $scope.searchRoutes = function () {
             newSearch = {lng: Number($scope.searchSrcLon), lat: Number($scope.searchSrcLat)};
             Routes.searchRoutes(newSearch).then(function (data) {
-                console.log(data);
-                //$scope.routes = data;
+                //console.log(data);
                 $scope.searchedRoutes = data;
             }, function (err) {
                 console.log('error here....', err);
@@ -41,7 +39,7 @@ angular.module('rideshareApp.home', []).controller('homeCont', function($scope, 
     var _user =null;
     return {
         saveRoute: function(route){
-            console.log(route);
+            //console.log(route);
             return $http.post('/info', route);
         },
         retrieveRoutes: function () {
