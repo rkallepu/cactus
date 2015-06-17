@@ -15,6 +15,7 @@ angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', funct
             });
         };
         $scope.addRoute = function () {
+            
             route.srcloc = {type: 'Point', coordinates: [Number($scope.sourcelng), Number($scope.sourcelt)]};
             route.dstloc = {type: 'Point', coordinates: [Number($scope.destinationlng), Number($scope.destinationlt)]};
             //console.log(route);
@@ -38,6 +39,10 @@ angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', funct
 }).service('Routes', function($q,$http){
     var _user =null;
     return {
+        logout: function(){
+            //console.log('calling logout service');
+          return $http.get('/logout');
+        },
         saveRoute: function(route){
             //console.log(route);
             return $http.post('/info', route);

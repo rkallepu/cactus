@@ -35,17 +35,9 @@ router.post('/register', function(req, res, next) {
     });
 });
 router.get('/logout', function(req, res) {
-    //req.session.destroy();
-    /*req.logout();
-    res.render('logout',{});*/
-    /*req.session.destroy(function (err) {
-     console.log(err);
-     res.redirect('/logout'); //Inside a callback… bulletproof!
-     });*/
-    //res.redirect('/logout');
     req.logout();
-    console.log('logged out...');
-    res.redirect('/login');
+    //console.log('logged out...');
+    res.redirect('/');
 });
 module.exports = router;
 

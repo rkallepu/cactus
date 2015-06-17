@@ -1,7 +1,7 @@
 var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.home', "ui.router"]).config(function ($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('index', {
-            url: "",
+            url: "/",
             views: {
                 "viewA": {
                     templateUrl: '/app/accounts/_home.html'
@@ -29,13 +29,6 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
                 "viewA": {
                     templateUrl: '/app/home/_info.html',
                     controller: 'homeCont'
-                }
-            }
-        }).state('logout', {
-            url: "/logout",
-            views: {
-                "viewA": {
-                    templateUrl: '/app/accounts/_logout.html'
                 }
             }
         });
