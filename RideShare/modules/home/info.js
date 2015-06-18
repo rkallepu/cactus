@@ -12,6 +12,7 @@ router.get('/getRoutes', function(req, res) {
     });
 });
 router.get('/searchRoutes', function(req, res) {
+    console.log(req.query);
     Routermodel.find({
         srcloc:{
             $near:{
@@ -20,8 +21,7 @@ router.get('/searchRoutes', function(req, res) {
                     type: 'Point',
                     coordinates: [Number(req.query.lng), Number(req.query.lat)]
                 },
-                $maxDistance: 5000,
-                $minDistance: 0
+                $maxDistance: Number(req.query.radius)
             }
         }
     },function(err, results){

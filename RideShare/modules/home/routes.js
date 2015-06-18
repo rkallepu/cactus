@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Routes = new Schema({
+    uuid: String,
+    username: String,
+    srcAddr: String,
+    dstAddr: String,
     srcloc: {
         type: { type: String }
         , coordinates: []
