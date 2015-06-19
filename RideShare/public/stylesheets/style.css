@@ -1,22 +1,23 @@
-body {
-  padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html {
+  font-size: 100%;
 }
-.row{
-  padding-top: 70px;
+body {
+  /*padding: 0.3125em;*/
+  font: 0.75em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a.rideshare-style{
-  margin: 20px;
+  margin: 0.3125em;
+  padding: 0.375em 0.75em !important;
+  text-decoration: none;
+  color: gray;
+  top: 0.25em;
 }
 input.rideshare-style{
-  margin: 5px;
-}
-a {
-  color: #00B7FF;
+  /*margin: 5px;*/
+  margin: 0.3125em;
 }
 h1.rideshare-style{
-  margin-left: 10px;
-}
-@media screen and (min-device-width: 320px) and  (max-device-width: 480px){
-  
+  /*margin-left: 10px*/;
+  margin-left: 0.625em;
+  font-size: 2em;
 }
