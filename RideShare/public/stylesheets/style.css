@@ -21,3 +21,8 @@ h1.rideshare-style{
   margin-left: 0.625em;
   font-size: 2em;
 }
+.map {
+  height: 25em;
+  width: 37.5em;
+  margin: auto;
+}

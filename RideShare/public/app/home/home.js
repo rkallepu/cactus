@@ -1,4 +1,4 @@
-angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', function($scope, $location,Routes,Account, $q){
+angular.module('rideshareApp.home', ['homeFilter', 'ui.map']).controller('homeCont', function($scope, $location, Routes, Account, $q){
     //console.log('Inside home controller');
     if(Account.user === null){
         $location.path('/login');
@@ -25,6 +25,8 @@ angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', funct
                 console.log(route);
                 Routes.saveRoute(route).success(function () {
                     console.log('Route added');
+                    $scope.addressSrc = '';
+                    $scope.addressDst = '';
                 });
             });
         };
@@ -44,6 +46,11 @@ angular.module('rideshareApp.home', ['homeFilter']).controller('homeCont', funct
                     console.log('error here....', err);
                 });
             });
+        };
+        $scope.mapOptions = {
+            center: new google.maps.LatLng(37.3382, -78.670),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
     }
 }).service('Routes', function($q,$http){
