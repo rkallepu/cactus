@@ -32,7 +32,17 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
                 }
             }
         });
-    $urlRouterProvider.otherwise("/");
+    //$urlRouterProvider.otherwise("/");
+}).run(function ($http, Account, $location){
+    $http.get('/validate').success(function (data) {
+        console.log('valid user ... ');
+        //console.log(data);
+        Account.user = data.username;
+        $location.path('/info');
+    }).error(function () {
+        console.log('invalid user ... ');
+        $location.path('/');
+    });
 });
 /*angular.module('rideshareApp', ['ngRoute', 'rideshareApp.accounts','rideshareApp.home']).config(function ($routeProvider){
  $routeProvider.when('/home',{

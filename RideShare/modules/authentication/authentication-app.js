@@ -4,7 +4,8 @@ var passport = require('passport'),
     session = require('cookie-session'),
     router = express.Router();
 module.exports = function (app){
-    app.use(session({ keys: ['secretkey1', 'secretkey2', '...']}));
+    /*app.use(session({ keys: ['secretkey']}));*/
+    app.use(session({ keys: ['secretkey']}));
 
     app.use(passport.initialize());
     app.use(passport.session());

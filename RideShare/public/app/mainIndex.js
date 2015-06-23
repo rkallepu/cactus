@@ -9,7 +9,16 @@ app.controller('mainController', function($scope, Routes){
     $scope.update(true, false, false);
     $scope.logout = function(){
         //console.log('you clicked on logout');
-        Routes.logout();
+        Routes.logout().success(function () {
+            console.log('Logged out successfully..');
+        }).error(function (err) {
+            console.log('error on logout..',err);
+        });
         $scope.update(true, false, false);
     };
 });
+
+function onGoogleReady() {
+    console.log('Google maps api initialized.');
+    angular.bootstrap(document, ['rideshareApp']);
+}

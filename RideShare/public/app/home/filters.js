@@ -1,3 +1,4 @@
+/*
 angular.module('homeFilter', []).filter('matchRoutes', function() {
     return function(route, dstlatlng) {
         route = route || {};
@@ -15,3 +16,4 @@ angular.module('homeFilter', []).filter('matchRoutes', function() {
         return output;
     };
 });
+*/

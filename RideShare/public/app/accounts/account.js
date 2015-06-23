@@ -21,23 +21,24 @@ angular.module('rideshareApp.accounts', []).controller('registerCont', function(
 }).service('Account', function($q,$http){
     var _user =null;
     return {
-      register: function(user){
-          return $http.post('/register', user);
-      },
-      login: function (user) {
-          return $q(function (resolve, reject) {
-              $http.post('/login', user).success(function (data) {
-                  _user = data;
-                  resolve(data);
-              }).error(function (data) {
-                  reject(data);
-              });
-          });
-      },
+        register: function(user){
+            return $http.post('/register', user);
+        },
+        login: function (user) {
+            return $q(function (resolve, reject) {
+                $http.post('/login', user).success(function (data) {
+                    _user = data.user.name;
+                    resolve(data);
+                }).error(function (data) {
+                    reject(data);
+                });
+            });
+        },
         get user (){
             return _user;
+        },
+        set user(user) {
+            _user = user;
         }
     };
 });
-
-

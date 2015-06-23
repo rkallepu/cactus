@@ -36,4 +36,12 @@ router.post('/info', function (req, res){
         else res.status(200).json({message: 'Added'});
     });
 });
+router.get('/validate', function(req, res) {
+    console.log('req.user',req.user);
+    if(req.user){
+        res.json(req.user);
+    } else {
+        res.status(401).json({message: 'Unauthorized user'});
+    }
+});
 module.exports = router;
