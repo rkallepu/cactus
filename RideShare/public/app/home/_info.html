@@ -1,5 +1,23 @@
 <div class="row">
     <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a ui-sref="info.seeAll" aria-controls="seeAll" role="tab" data-toggle="tab">See All Routes</a></li>
+        <li role="presentation"><a ui-sref="info.addRoute" aria-controls="seeAll" role="tab" data-toggle="tab">Add Route</a></li>
+        <li role="presentation"><a ui-sref="info.searchRoute" aria-controls="seeAll" role="tab" data-toggle="tab">Search Route</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="seeAll" ui-view="viewB"></div>
+        <!--<div role="tabpanel" class="tab-pane" id="addRoute"><div ui-view="viewC"></div></div>
+        <div role="tabpanel" class="tab-pane" id="searchRoute"><div ui-view="viewD"></div></div>-->
+    </div>
+    </div>
+</div>
+<!--
+<div class="row">
+    <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
         <h4>Welcome {{name}}</h4>
         <form class="navbar-form">
             <div class="form-group">
@@ -25,7 +43,7 @@
         </form>
         <h5>Search Results:</h5>
         <ul>
-            <!--<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>-->
+            &lt;!&ndash;<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>&ndash;&gt;
             <li ng-repeat="route in searchedRoutes">{{route.srcAddr}} , {{route.dstAddr}}</li>
         </ul>
     </div>
@@ -34,4 +52,5 @@
             <div id="map_canvas" ui-map="myMap" ui-options="mapOptions" class="map" ui-event="{'tilesloaded': 'addMarker()'}"></div>
         </div>
     </div>
-</div>
+</div>-->
+

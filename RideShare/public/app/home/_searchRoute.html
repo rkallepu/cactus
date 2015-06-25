@@ -1,0 +1,15 @@
+<div>
+    <form class="navbar-form">
+        <div class="form-group">
+            <input required class="form-control" type="text" name="searchSrcAddr" ng-model="searchSrcAddr" placeholder="Source Address"/>
+            <input required class="form-control" type="text" name="searchDestAddr" ng-model="searchDestAddr" placeholder="Destination Address"/>
+            <input required class="form-control" type="text" name="radius" ng-model="radius" placeholder="search radius in meters"/>
+        </div>
+        <button ng-click="searchRoutes()" class="btn btn-default navbar-btn">Search Routes</button>
+    </form>
+    <h5>Search Results:</h5>
+    <ul>
+        <!--<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>-->
+        <li ng-repeat="route in searchedRoutes">{{route.srcAddr}} , {{route.dstAddr}}</li>
+    </ul>
+</div>

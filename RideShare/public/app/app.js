@@ -27,7 +27,30 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
             url: "/info",
             views: {
                 "viewA": {
-                    templateUrl: '/app/home/_info.html',
+                    templateUrl: '/app/home/_info.html'
+                }
+            }
+        }).state("info.seeAll", {
+            url: "",
+            views:{
+                "viewB":{
+                    templateUrl: "/app/home/_seeAllRoutes.html",
+                    controller: 'homeCont'
+                }
+            }
+        }).state("info.addRoute", {
+            url: "",
+            views:{
+                "viewB":{
+                    templateUrl: "/app/home/_addRoute.html",
+                    controller: 'homeCont'
+                }
+            }
+        }).state("info.searchRoute", {
+            url: "",
+            views:{
+                "viewB":{
+                    templateUrl: "/app/home/_searchRoute.html",
                     controller: 'homeCont'
                 }
             }

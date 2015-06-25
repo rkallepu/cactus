@@ -1,0 +1,7 @@
+<div>
+    <h5>All Available Routes:</h5>
+    <button ng-click="seeAllRoutes()" class="btn btn-default navbar-btn">Show All Routes</button>
+    <ul id="retrieve">
+        <li ng-repeat="route in routes">{{route.srcAddr}} , {{route.dstAddr}}</li>
+    </ul>
+</div>

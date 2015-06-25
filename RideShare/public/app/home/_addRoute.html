@@ -1,0 +1,10 @@
+<div>
+    <h4>Welcome {{name}}</h4>
+    <form class="navbar-form">
+        <div class="form-group">
+            <input required class="form-control" type="text" name="addressSrc" ng-model="addressSrc" placeholder="Source Address"/>
+            <input required class="form-control" type="text" name="addressDst" ng-model="addressDst" placeholder="Destination Address"/>
+        </div>
+        <button ng-click="addRoute()" class="btn btn-default navbar-btn">Add Route</button>
+    </form>
+</div>

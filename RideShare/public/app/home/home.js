@@ -1,4 +1,4 @@
-angular.module('rideshareApp.home', ['ui.map']).controller('homeCont', function($scope, $location, Routes, Account, $q, $filter){
+angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap']).controller('homeCont', function($scope, $location, Routes, Account, $q, $filter){
     //console.log('Inside home controller');
 
     $scope.update(false, true, true);
