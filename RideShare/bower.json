@@ -12,5 +12,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular-smart-table": "~2.1.0"
+  },
+  "resolutions": {
+    "angular": "~1.4.0"
+  }
 }

@@ -1,26 +1,76 @@
-angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap']).controller('homeCont', function($scope, $location, Routes, Account, $q, $filter){
+angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap','smart-table', 'ngMaterial']).controller('homeCont', function($scope, $location, Routes, Account, $q, $filter, $state){
     //console.log('Inside home controller');
-
+    "use strict";
     $scope.update(false, true, true);
     $scope.name = Account.user;
     var route = {};
-    $scope.seeAllRoutes = function () {
-        Routes.retrieveRoutes().then(function (data) {
-            //console.log(data);
-            $scope.routes = data;
-            /*data.forEach(function (d) {
-             $scope.addMarker(new google.maps.LatLng(d.srcloc.coordinates[1], d.srcloc.coordinates[0]), d.username);
-             $scope.addMarker(new google.maps.LatLng(d.dstloc.coordinates[1], d.dstloc.coordinates[0]), d.username);
-             });*/
-        }, function (err) {
-            console.log('error here....', err);
-        });
+    $scope.go = function(state) {
+        $state.go(state);
     };
+    $scope.numberofroutes = 5;
+    $scope.selectedIndex = 0;
+    //$scope.myview = 'viewB';
+
+    $scope.onSwipeRight = function (){
+
+        if ($scope.selectedIndex < 2){
+            $scope.selectedIndex  = $scope.selectedIndex + 1;
+        }
+        // if you want to make all the tour
+        else{
+            $scope.selectedIndex  = 0;
+        }
+    }
+
+    $scope.onSwipeLeft = function () {
+
+        if ($scope.selectedIndex > 0){
+            $scope.selectedIndex  = $scope.selectedIndex - 1;
+        }
+        // if you want to make all the tour
+        else {
+            $scope.selectedIndex  = 2;
+        }
+    }
+    $scope.$watch('selectedIndex', function(current, old) {
+        switch (current) {
+            case 0:
+                //$location.url("/seeall");
+                $scope.go('info.seeAll');
+                break;
+            case 1:
+                //$location.url("/addroute");
+                $scope.go('info.addRoute');
+                break;
+            case 2:
+                //$location.url("/searchroute");
+                $scope.go('info.searchRoute');
+                break;
+        }
+    });
+
+    //$scope.seeAllRoutes = function () {
+    Routes.retrieveRoutes().then(function (data) {
+        //console.log(data);
+        $scope.routes = data;
+        /*data.forEach(function (d) {
+         $scope.addMarker(new google.maps.LatLng(d.srcloc.coordinates[1], d.srcloc.coordinates[0]), d.username);
+         $scope.addMarker(new google.maps.LatLng(d.dstloc.coordinates[1], d.dstloc.coordinates[0]), d.username);
+         });*/
+    }, function (err) {
+        console.log('error here....', err);
+    });
+    //};
+
+    $scope.rowCollection = [].concat($scope.routes);
+
+
     $scope.addRoute = function () {
         route.uuid = Routes.uuid();
         route.username = $scope.name;
         route.srcAddr = $scope.addressSrc;
         route.dstAddr = $scope.addressDst;
+        var directionsDisplay;
         $q.all([Routes.getGeocodes({'address' : $scope.addressSrc}),Routes.getGeocodes({'address': $scope.addressDst})]).then(function(results){
             route.srcloc = {type: 'Point', coordinates: [results[0][0].geometry.location.F, results[0][0].geometry.location.A]};
             route.dstloc = {type: 'Point', coordinates: [results[1][0].geometry.location.F, results[1][0].geometry.location.A]};
@@ -31,6 +81,12 @@ angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap']).controller('home
                 $scope.addressDst = '';
                 //$scope.addMarker(new google.maps.LatLng(results[0][0].geometry.location.A,results[0][0].geometry.location.F),$scope.name);
                 //$scope.addMarker(new google.maps.LatLng(results[1][0].geometry.location.A,results[1][0].geometry.location.F),$scope.name);
+                Routes.getDirections((new google.maps.LatLng(results[0][0].geometry.location.A,results[0][0].geometry.location.F)),(new google.maps.LatLng(results[1][0].geometry.location.A,results[1][0].geometry.location.F)))
+                    .then(function (data) {
+                        directionsDisplay = new google.maps.DirectionsRenderer();
+                        directionsDisplay.setDirections(data);
+                        directionsDisplay.setMap($scope.myMap);
+                    });
             });
         });
     };
@@ -50,8 +106,9 @@ angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap']).controller('home
                 $scope.addMarker(new google.maps.LatLng($scope.dstlatlng[1],$scope.dstlatlng[0]),$scope.name,2);
                 $scope.addMarker(new google.maps.LatLng(srclatlng[1],srclatlng[0]),$scope.name,1);
                 $scope.searchedRoutes.forEach(function (r) {
-                    $scope.addMarker(new google.maps.LatLng(r.srcloc.coordinates[1], r.srcloc.coordinates[0]));
-                    $scope.addMarker(new google.maps.LatLng(r.dstloc.coordinates[1], r.dstloc.coordinates[0]));
+                    //console.log(r);
+                    $scope.addMarker(new google.maps.LatLng(r.srcloc.coordinates[1], r.srcloc.coordinates[0]), r.username);
+                    $scope.addMarker(new google.maps.LatLng(r.dstloc.coordinates[1], r.dstloc.coordinates[0]), r.username);
                 });
                 //$scope.searchedRoutes = data;
             }, function (err) {
@@ -136,6 +193,24 @@ angular.module('rideshareApp.home', ['ui.map', 'ui.bootstrap']).controller('home
                     }
                     else{
                         reject(results);
+                    }
+                });
+            });
+        },
+        getDirections: function (srcLatlng, dstLatlng) {
+            return $q(function (resolve, reject) {
+                var directionsService = new google.maps.DirectionsService();
+                var request = {
+                    origin: srcLatlng,
+                    destination: dstLatlng,
+                    travelMode: google.maps.TravelMode.DRIVING
+                };
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        //directionsDisplay.setDirections(response);
+                        resolve(response);
+                    }else {
+                        reject(response);
                     }
                 });
             });

@@ -1,56 +1,13 @@
 <div class="row">
-    <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a ui-sref="info.seeAll" aria-controls="seeAll" role="tab" data-toggle="tab">See All Routes</a></li>
-        <li role="presentation"><a ui-sref="info.addRoute" aria-controls="seeAll" role="tab" data-toggle="tab">Add Route</a></li>
-        <li role="presentation"><a ui-sref="info.searchRoute" aria-controls="seeAll" role="tab" data-toggle="tab">Search Route</a></li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="seeAll" ui-view="viewB"></div>
-        <!--<div role="tabpanel" class="tab-pane" id="addRoute"><div ui-view="viewC"></div></div>
-        <div role="tabpanel" class="tab-pane" id="searchRoute"><div ui-view="viewD"></div></div>-->
-    </div>
-    </div>
-</div>
-<!--
-<div class="row">
-    <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12">
+    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
         <h4>Welcome {{name}}</h4>
-        <form class="navbar-form">
-            <div class="form-group">
-                <input required class="form-control" type="text" name="addressSrc" ng-model="addressSrc" placeholder="Source Address"/>
-                <input required class="form-control" type="text" name="addressDst" ng-model="addressDst" placeholder="Destination Address"/>
-            </div>
-            <button ng-click="addRoute()" class="btn btn-default navbar-btn">Add Route</button>
-        </form>
-
-        <h5>All Available Routes:</h5>
-        <button ng-click="seeAllRoutes()" class="btn btn-default navbar-btn">Show All Routes</button>
-        <ul id="retrieve">
-            <li ng-repeat="route in routes">{{route.srcAddr}} , {{route.dstAddr}}</li>
-        </ul>
-
-        <form class="navbar-form">
-            <div class="form-group">
-                <input required class="form-control" type="text" name="searchSrcAddr" ng-model="searchSrcAddr" placeholder="Source Address"/>
-                <input required class="form-control" type="text" name="searchDestAddr" ng-model="searchDestAddr" placeholder="Destination Address"/>
-                <input required class="form-control" type="text" name="radius" ng-model="radius" placeholder="search radius in meters"/>
-            </div>
-            <button ng-click="searchRoutes()" class="btn btn-default navbar-btn">Search Routes</button>
-        </form>
-        <h5>Search Results:</h5>
-        <ul>
-            &lt;!&ndash;<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>&ndash;&gt;
-            <li ng-repeat="route in searchedRoutes">{{route.srcAddr}} , {{route.dstAddr}}</li>
-        </ul>
-    </div>
-    <div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-        <div id="map">
-            <div id="map_canvas" ui-map="myMap" ui-options="mapOptions" class="map" ui-event="{'tilesloaded': 'addMarker()'}"></div>
+        <md-tabs md-stretch-tabs md-selected="selectedIndex">
+            <md-tab label="See all routes" md-on-select="go('info.seeAll')"></md-tab>
+            <md-tab label="Add new route"></md-tab>
+            <md-tab label="Search route"></md-tab>
+        </md-tabs>
+        <div layout="row" layout-fill layout-padding layout-margin>
+            <md-content ui-view flex md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()"></md-content>
         </div>
     </div>
-</div>-->
-
+</div>

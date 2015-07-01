@@ -1,7 +1,40 @@
-<div>
-    <h5>All Available Routes:</h5>
-    <button ng-click="seeAllRoutes()" class="btn btn-default navbar-btn">Show All Routes</button>
-    <ul id="retrieve">
-        <li ng-repeat="route in routes">{{route.srcAddr}} , {{route.dstAddr}}</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 col-xs-10 col-md-6 col-sm-10">
+        <h5>All Available Routes:</h5>
+        <!--<button ng-click="seeAllRoutes()" class="btn btn-default navbar-btn">Show All Routes</butto n>-->
+        <!--<ul id="retrieve">
+            <li ng-repeat="route in routes">{{route.srcAddr}} , {{route.dstAddr}}</li>
+        </ul>-->
+
+        <table st-safe-src="routes" st-table="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>User</th>
+                <th>Show Map</th>
+                <th>Request for Ride</th>
+                <th>Contact</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="route in rowCollection">
+                <td>{{route.srcAddr}}</td>
+                <td>{{route.dstAddr}}</td>
+                <td>{{route.username}}</td>
+                <td><a href="#">Show map</a></td>
+                <td><a href="#">Request</a></td>
+                <td><a href="#">Contact</a></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6" class="text-center" st-pagination="" st-items-by-page="numberofroutes" st-displayed-pages="5">
+
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
 </div>

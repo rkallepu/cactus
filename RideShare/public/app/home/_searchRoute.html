@@ -1,15 +1,17 @@
-<div>
-    <form class="navbar-form">
-        <div class="form-group">
-            <input required class="form-control" type="text" name="searchSrcAddr" ng-model="searchSrcAddr" placeholder="Source Address"/>
-            <input required class="form-control" type="text" name="searchDestAddr" ng-model="searchDestAddr" placeholder="Destination Address"/>
-            <input required class="form-control" type="text" name="radius" ng-model="radius" placeholder="search radius in meters"/>
-        </div>
-        <button ng-click="searchRoutes()" class="btn btn-default navbar-btn">Search Routes</button>
-    </form>
-    <h5>Search Results:</h5>
-    <ul>
-        <!--<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>-->
-        <li ng-repeat="route in searchedRoutes">{{route.srcAddr}} , {{route.dstAddr}}</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 col-xs-8 col-md-12 col-sm-8">
+        <form class="navbar-form">
+            <div class="form-group">
+                <input required class="form-control" type="text" name="searchSrcAddr" ng-model="searchSrcAddr" placeholder="Source Address"/>
+                <input required class="form-control" type="text" name="searchDestAddr" ng-model="searchDestAddr" placeholder="Destination Address"/>
+                <input required class="form-control" type="text" name="radius" ng-model="radius" placeholder="search radius in meters"/>
+            </div>
+            <button ng-click="searchRoutes()" class="btn btn-default navbar-btn">Search Routes</button>
+        </form>
+        <h5>Search Results:</h5>
+        <ul>
+            <!--<li ng-repeat="route in searchedRoutes | matchRoutes: dstlatlng">{{route.srcAddr}} , {{route.dstAddr}}</li>-->
+            <li ng-repeat="route in searchedRoutes"><span class="name">{{route.username}}</span> is going from <span class="name">{{route.srcAddr}}</span> to <span class="name">{{route.dstAddr}}</span></li>
+        </ul>
+    </div>
 </div>

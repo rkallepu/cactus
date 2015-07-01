@@ -25,38 +25,25 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
             }
         }).state('info', {
             url: "/info",
+            abstract: true,
             views: {
                 "viewA": {
-                    templateUrl: '/app/home/_info.html'
-                }
-            }
-        }).state("info.seeAll", {
-            url: "",
-            views:{
-                "viewB":{
-                    templateUrl: "/app/home/_seeAllRoutes.html",
+                    templateUrl: '/app/home/_info.html',
                     controller: 'homeCont'
                 }
             }
-        }).state("info.addRoute", {
-            url: "",
-            views:{
-                "viewB":{
-                    templateUrl: "/app/home/_addRoute.html",
-                    controller: 'homeCont'
-                }
-            }
-        }).state("info.searchRoute", {
-            url: "",
-            views:{
-                "viewB":{
-                    templateUrl: "/app/home/_searchRoute.html",
-                    controller: 'homeCont'
-                }
-            }
+        }).state('info.seeAll', {
+            url: "/seeall",
+            templateUrl: "app/home/_seeAllRoutes.html"
+        }).state('info.addRoute', {
+            url: "/addroute",
+            templateUrl: "app/home/_addRoute.html"
+        }).state('info.searchRoute', {
+            url: "/searchroute",
+            templateUrl: "app/home/_searchRoute.html"
         });
-    //$urlRouterProvider.otherwise("/");
-}).run(function ($http, Account, $location){
+    // $urlRouterProvider.otherwise("/");
+}).run(function ($http, Account, $location) {
     $http.get('/validate').success(function (data) {
         console.log('valid user ... ');
         //console.log(data);
@@ -86,4 +73,3 @@ var app = angular.module('rideshareApp', ['rideshareApp.accounts','rideshareApp.
  });
  }).run(function (){
  });*/
-

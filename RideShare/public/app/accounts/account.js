@@ -15,7 +15,7 @@ angular.module('rideshareApp.accounts', []).controller('registerCont', function(
     $scope.login = function(){
         Account.login($scope.new_user).then(function(data){
             //console.log('Hi from login controller');
-            $location.path('/info');
+            $location.path('/info/seeall');
         });
     };
 }).service('Account', function($q,$http){
