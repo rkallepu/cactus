@@ -1,0 +1,28 @@
+<div class="text-center row">
+    <div class="col-lg-12 col-xs-8 col-md-6 col-sm-8">
+        <h4>New User Authorization</h4>
+        <form class="navbar-form" name="user" action="/validatePhone" method="post">
+            <div class="form-group">
+                <div><input required class="form-control rideshare-style" type="text" name="phone" placeholder="mobile number" ng-model="new_user.phone"/></div>
+                <div>
+                    <select required class="form-control" name="carrier" ng-model="new_user.carrier">
+                        <!--<option ng-selected="true">Select carrier</option>-->
+                        <option value="txt.att.net" ng-selected="true">AT&T</option>
+                        <option value="vtext.com">Verizon</option>
+                        <option value="tmomail.net">T-Mobile</option>
+                    </select>
+                </div>
+                <div ng-show="authCodeSent"><input required class="form-control rideshare-style" type="text" name="code"  placeholder="authorization code" ng-model="new_user.code"/></div>
+            </div>
+        </form>
+        <button ng-hide="authCodeSent" ng-click="validatePhone()" class="btn btn-default navbar-btn">Send Authorization Code</button>
+        <button ng-show="authCodeSent" ng-click="validateAuthCode()" class="btn btn-default navbar-btn">Accept Authorization Code</button>
+        <div ng-messages="user.phone.$error;user.carrier.$error" role="alert">
+            <div ng-if="registerOneError">
+                <div ng-message="required" class="error">Please enter phone number and carrier!</div>
+            </div>
+        </div>
+        <div><span ng-if="showPhoneError" class="error">Phone number is already registered!</span></div>
+        <div><span ng-if="showAuthCodeError" class="error">Enter a valid authorization code!</span></div>
+    </div>
+</div>
